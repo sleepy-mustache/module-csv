@@ -2,7 +2,7 @@
 
 * Date:    August 13, 2014
 * Author:  Jaime A. Rodriguez <hi.i.am.jaime@gmail.com>
-* Version: 1.8
+* Version: 1.9
 * License: http://opensource.org/licenses/MIT
 
 Creates a Comma Separated Value file.
