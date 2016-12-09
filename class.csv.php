@@ -20,6 +20,9 @@ namespace Module\CSV;
  *
  * ### Changelog
  *
+ * ##Version 1.9
+ * * Added ability to use your own filename in the show method
+ *
  * ##Version 1.8
  * * Added namespacing
  * * Renamed remove method to delete
@@ -232,8 +235,13 @@ class Document {
 		ob_end_clean();
 
 		// Name the file
-		$filename = date('YmdHis') . ".csv";
-
+		if (isset($this->filename)) {
+			$filename = $this->filename;
+			$filename .= (substr($filename, -4, 4) !== '.csv') ? '.csv' : '';
+		} else {
+			$filename = date('YmdHis') . ".csv";
+		}
+		
 		// Write the CSV headers
 		if (function_exists('header_remove')) {
 			header_remove();
