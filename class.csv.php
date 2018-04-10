@@ -131,7 +131,7 @@ class Document {
 
 		// make the file if it doesn't exist.
 		if (!file_exists($this->filename)) {
-			file_put_contents($this->filename, '');
+			@file_put_contents($this->filename, '');
 		}
 
 		if ($handle = @fopen($this->filename, 'r+')) {
@@ -254,6 +254,7 @@ class Document {
 		header("Content-Type: application/octet-stream");
 		header("Content-Disposition: attachment; filename=\"$filename\";" );
 		header("Content-Transfer-Encoding: binary");
+		echo "\xEF\xBB\xBF"; // UTF-8 BOM
 
 		// output of csv to default output (screen) instead of a file
 		$this->filename = "php://output";
