@@ -235,13 +235,13 @@ class Document {
 		ob_end_clean();
 
 		// Name the file
-		if (isset($this->filename)) {
+		if (!empty($this->filename)) {
 			$filename = $this->filename;
 			$filename .= (substr($filename, -4, 4) !== '.csv') ? '.csv' : '';
 		} else {
 			$filename = date('YmdHis') . ".csv";
 		}
-		
+
 		// Write the CSV headers
 		if (function_exists('header_remove')) {
 			header_remove();
