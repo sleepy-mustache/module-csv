@@ -1,4 +1,7 @@
 <?php
+// @todo update tests to PHPUnit
+die();
+
 require_once('class.csv.php');
 
 /**
