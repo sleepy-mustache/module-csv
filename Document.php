@@ -1,5 +1,21 @@
 <?php
+/**
+ * The CSV class creates and reads CSV Files
+ *
+ * PHP version 7.0.0
+ *
+ * @category Data Storage and Manipulation
+ * @package  Module/CSV
+ * @author   Jaime Rodriguez <hi.i.am.jaime@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @version  GIT: 1.0.0
+ * @link     http://sleepymustache.com
+ */
+
 namespace Module\CSV;
+
+use Sleepy\Core\Hook;
+use Sleepy\Core\Module;
 
 /**
  * Creates a Comma Separated Value file.
@@ -7,18 +23,20 @@ namespace Module\CSV;
  * ### Usage
  *
  * <code>
- *   // loads a existing CSV file
- *   $c = new \Module\CSV\Document('presidents.csv');
- *
- *   $c->add(array(
- *     'George',
- *     'Washington'
- *   ));
- *
+ *   use \Module\CSV\Document;
+ * 
+ *   // Load a file 
+ *   $c = new Document('presidents.csv');
+ * 
+ * 	 // Add a entry, then save.
+ *   $c->add(['George', 'Washington']);
  *   $c->save();
  * </code>
  *
  * ### Changelog
+ * 
+ * ##Version 2.0
+ * * Made compatible with 2.x branch
  *
  * ##Version 1.9
  * * Added ability to use your own filename in the show method
@@ -35,12 +53,19 @@ namespace Module\CSV;
  * * check if we can remove the header before doing it... teamsite issue.
  * * suppress flock warnings... teamsite issue
  *
- * @date August 13, 2014
- * @author Jaime A. Rodriguez <hi.i.am.jaime@gmail.com>
- * @version 1.8
- * @license  http://opensource.org/licenses/MIT
+ * @category Data Storage and Manipulation
+ * @package  Module/Performance
+ * @author   Jaime Rodriguez <hi.i.am.jaime@gmail.com>
+ * @license  https://opensource.org/licenses/MIT MIT
+ * @link     http://sleepymustache.com
  */
-class Document {
+class Document extends Module
+{
+	/**
+     * Define the hook points
+     */
+    public $hooks = [];
+	
 	/**
 	 * string The filename of the CSV file
 	 */
@@ -262,3 +287,6 @@ class Document {
 		$this->save();
 	}
 }
+
+
+Hook::register(new Document());
